@@ -134,12 +134,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -177,6 +177,121 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/07/mongoDB-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar-celest.gif">
+      <meta itemprop="name" content="Coco">
+      <meta itemprop="description" content="Take whatever you like.^_^">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/02/07/mongoDB-1/" class="post-title-link" itemprop="url">mongoDB_1</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-02-07 14:07:49 / 修改时间：15:58:11" itemprop="dateCreated datePublished" datetime="2022-02-07T14:07:49+08:00">2022-02-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="mongDB学习日记（一）"><a href="#mongDB学习日记（一）" class="headerlink" title="mongDB学习日记（一）"></a>mongDB学习日记（一）</h1><h4 id="官网下载mongoDB："><a href="#官网下载mongoDB：" class="headerlink" title="官网下载mongoDB："></a>官网下载mongoDB：</h4><ul>
+<li>当然直接在官方网站下载就好了，可以直接点击—-&gt;<a target="_blank" rel="noopener" href="https://www.mongodb.com/try/download/community">这里</a>。</li>
+<li>在下载的过程中，我们可以选择自定义，在合适的磁盘下载，像我一般是放在D盘。</li>
+<li>在最后一部也可以直接下载MongoDB Compass，是mongoDB数据库的可视化界面。</li>
+</ul>
+<h4 id="MongoDB-Shell："><a href="#MongoDB-Shell：" class="headerlink" title="MongoDB Shell："></a>MongoDB Shell：</h4><ul>
+<li><p>通过在Windows控制台运行命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd..(退出当前文件夹)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /d ……\mongoDB\bin(进入mongoDB的bin文件夹中)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;mongo(回车)</span><br></pre></td></tr></table></figure></li>
+<li><p>shell将自动连接MongoDB服务器，shell是一个功能完备的JavaScript解释器，可以运行任意的JavaScript程序，虽然能够运行JavaScript程序很不错，但是真正强大的地方在于它是一个独立的MongoDB客户端。</p>
+</li>
+<li><p>MongoDB数据库的基本结构是：①数据库&gt;②集合&gt;③文档（字典）&gt;④键值对</p>
+</li>
+<li><p>启动后，这个数据库连接赋值给全局变量db，这个变量是通过shell访问MongoDB的主要入口。可以使用db命令查看当前指向的数据库。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;db</span><br><span class="line">test</span><br><span class="line">&gt;use demod1</span><br><span class="line">switched to db demod1</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="shell中的基本操作："><a href="#shell中的基本操作：" class="headerlink" title="shell中的基本操作："></a>shell中的基本操作：</h4><p>在shell中查看或操作数据会用到四个基本操作：创建、读取、更新、删除。</p>
+<ol>
+<li><p>创建</p>
+<p>在mongoDB中，文档是用JavaScript对象来表示的，我们需要先创建一个局部变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;post=&#123;<span class="attr">title</span>:<span class="string">&quot;My first blog!&quot;</span>,</span><br><span class="line">      <span class="attr">content</span>:<span class="string">&quot;Hello World!&quot;</span>,</span><br><span class="line">      <span class="attr">date</span>:<span class="keyword">new</span> <span class="built_in">Date</span>()&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有效文档可以用insert方法保存在集合中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;db.blog.insert(post)</span><br><span class="line">WriteResult(&#123;<span class="string">&quot;nInserted&quot;</span>:<span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure></li>
+<li><p>读取</p>
+<p>find和findOne方法可以用于查询集合中的文档，并且可以接受一个限定条件来查询文档。使用find时，shell会自动匹配最多20个文档。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;db.blog.find()</span><br></pre></td></tr></table></figure>
+
+<p>如果只想看一个文档可以findOne</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;db.blog.findOne()</span><br></pre></td></tr></table></figure></li>
+<li><p>更新</p>
+<p>使用update修改文档，update接收（至少）两个参数：第一个是限定文档中的条件（如键值对），第二个是新的文档</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;post.comments=[]</span><br><span class="line">[ ]</span><br><span class="line">&gt;db.blog.update(&#123;<span class="attr">title</span>:<span class="string">&quot;My first blog!&quot;</span>&#125;,post)</span><br><span class="line">WriteResult(&#123;<span class="string">&quot;nMatched&quot;</span>:<span class="number">1</span>,<span class="string">&quot;nUpdated&quot;</span>:<span class="number">1</span>,<span class="string">&quot;nModified&quot;</span>:<span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure></li>
+<li><p>删除</p>
+<p>使用remove方法可以将文档删除，如果没有任何参数，它会将集合内的所有文档全部删除。它可以接受一个作为限定条件的文档作为参数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;db.blog.remove()</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="MongoDB的基本数据类型"><a href="#MongoDB的基本数据类型" class="headerlink" title="MongoDB的基本数据类型"></a>MongoDB的基本数据类型</h4><p>MongoDB的文档类似于JSON，在概念上和JavaScript的对象相似。</p>
+<p>MongoDB在保留JSON基本的键值对特性的基础上，添加了其他一些数据类型。</p>
+<ol>
+<li><p>null，用于表示空或不存在的字段</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;x&quot;</span>:<span class="literal">null</span>&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>布尔型，有两个值”true”和”false”</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;x&quot;</span>:<span class="literal">true</span>&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>数值，不区分整数或浮点数，但是整数类型可以用以下方式表示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;a&quot;</span> : NumberInt(<span class="string">&quot;3&quot;</span>)&#125; #表示<span class="number">4</span>字节整数</span><br><span class="line">&#123;<span class="string">&quot;a&quot;</span> : NumberLong(<span class="string">&quot;3&quot;</span>)&#125;  #表示<span class="number">8</span>字节整数</span><br></pre></td></tr></table></figure></li>
+<li></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/02/Colocation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -202,6 +317,13 @@
       <span class="post-meta-item-text">发表于</span>
 
       <time title="创建时间：2022-02-02 15:17:58" itemprop="dateCreated datePublished" datetime="2022-02-02T15:17:58+08:00">2022-02-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-02-03 22:07:38" itemprop="dateModified" datetime="2022-02-03T22:07:38+08:00">2022-02-03</time>
     </span>
 
   
@@ -264,6 +386,70 @@
 <td align="center">组织能力</td>
 <td align="center">sharpen skills/add to the skills set</td>
 <td align="center">丰富技能</td>
+</tr>
+</tbody></table>
+<h4 id="Air-Travel（航空旅行）："><a href="#Air-Travel（航空旅行）：" class="headerlink" title="Air Travel（航空旅行）："></a>Air Travel（航空旅行）：</h4><table>
+<thead>
+<tr>
+<th align="center">英文</th>
+<th align="center">中文</th>
+<th align="center">英文</th>
+<th align="center">中文</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">travel by air</td>
+<td align="center">坐飞机出行</td>
+<td align="center">air tavel</td>
+<td align="center">空航</td>
+</tr>
+<tr>
+<td align="center">air transport</td>
+<td align="center">空运</td>
+<td align="center">transport……by air</td>
+<td align="center">通过飞机运输</td>
+</tr>
+<tr>
+<td align="center">make non-essential trips</td>
+<td align="center">进行不必要的旅行</td>
+<td align="center">price war</td>
+<td align="center">价格战</td>
+</tr>
+<tr>
+<td align="center">in the airline industry</td>
+<td align="center">在航空业</td>
+<td align="center">air fares</td>
+<td align="center">机票费用</td>
+</tr>
+<tr>
+<td align="center">travel expenses</td>
+<td align="center">旅费</td>
+<td align="center">on holiday</td>
+<td align="center">在度假</td>
+</tr>
+<tr>
+<td align="center">tourist attraction</td>
+<td align="center">旅游景点</td>
+<td align="center">a sourse of pollution</td>
+<td align="center">污染源</td>
+</tr>
+<tr>
+<td align="center">greenhouse gases</td>
+<td align="center">温室气体</td>
+<td align="center">build up in the atmosphere</td>
+<td align="center">聚集在大气中</td>
+</tr>
+<tr>
+<td align="center">trap heat from the sun</td>
+<td align="center">从太阳吸收热量</td>
+<td align="center">extreme weather conditions</td>
+<td align="center">极端的天气</td>
+</tr>
+<tr>
+<td align="center">unusually warm conditions</td>
+<td align="center">异常温暖的气候</td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 </tbody></table>
 
