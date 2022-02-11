@@ -200,9 +200,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-02-07 14:07:49 / 修改时间：15:58:11" itemprop="dateCreated datePublished" datetime="2022-02-07T14:07:49+08:00">2022-02-07</time>
+      <time title="创建时间：2022-02-07 14:07:49" itemprop="dateCreated datePublished" datetime="2022-02-07T14:07:49+08:00">2022-02-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-02-11 11:15:33" itemprop="dateModified" datetime="2022-02-11T11:15:33+08:00">2022-02-11</time>
     </span>
 
   
@@ -264,7 +270,20 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;x&quot;</span>:<span class="literal">true</span>&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>数值，不区分整数或浮点数，但是整数类型可以用以下方式表示：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;a&quot;</span> : NumberInt(<span class="string">&quot;3&quot;</span>)&#125; #表示<span class="number">4</span>字节整数</span><br><span class="line">&#123;<span class="string">&quot;a&quot;</span> : NumberLong(<span class="string">&quot;3&quot;</span>)&#125;  #表示<span class="number">8</span>字节整数</span><br></pre></td></tr></table></figure></li>
-<li></li>
+<li><p>字符串，UTF-8字符串都可以表示为字符串类型的数据：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;x&quot;</span>:<span class="string">&quot;love miki&quot;</span>&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>对象ID，是文档的12字节的唯一ID。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;x&quot;</span>:ObjectId()&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ObjectId设计为轻量型，不同的机器都能用全局唯一的同种方法方便地生成。ObjectId使用12字节的储存空间，每个字节两位十六进制数字，是一个24位十六进制的字符串。</p>
+</li>
+<li><p>日期，日期存储的是从标准纪元开始的毫秒数。不存储时区。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;x&quot;</span>:newDate()&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>数组，值的集合或者列表可以表示成数组：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;x&quot;</span>:[<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>]&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>内嵌文档，内嵌文档就是把整个MongoDB文档作为另一个文档中键的一个值。</p>
+<p>例如，用一个文档来表示一个人，同时还要保存他的地址，可以将地址内嵌到”address”文档中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;Coco&quot;</span>,</span><br><span class="line"><span class="string">&quot;address&quot;</span>:&#123;</span><br><span class="line">    <span class="string">&quot;street&quot;</span>:<span class="string">&quot;heaven-road&quot;</span>,</span><br><span class="line">        <span class="string">&quot;city&quot;</span>:<span class="string">&quot;HK&quot;</span></span><br><span class="line">&#125;&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 
       
